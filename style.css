@@ -21,6 +21,15 @@ body {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   line-height: 1.4;
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin: 50px;
+}
+
+.gift-section {
+  scroll-margin: 120px;
 }
 
 ul {
@@ -56,12 +65,14 @@ nav {
 .logo {
   font-size: 32px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 button {
   padding: 10px 15px;
   border: none;
   transition: 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 button:hover {
@@ -87,28 +98,67 @@ nav ul li:hover {
 
 /* --Hero-Section--*/
 
-.hero-section {
-  background-image: url(images/hero_image.png);
-  height: 100vh;
-  color: white;
+.hero-section{
+  position: relative;
+  min-height: 100vh;
   display: grid;
   place-items: center;
   text-align: center;
+  color: white;
+  overflow: hidden;
 }
 
-.hero-section .container {
+.hero-section::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url(images/hero-image.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter: blur(4px);
+  transform: scale(1.1);
+
+  z-index: 0;
+}
+
+.hero-section::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  z-index: 1;
+}
+
+.hero-section .container{
+  position: relative;
+  z-index: 2;
+
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.hero-section h1 {
+.hero-section h1{
   font-size: 96px;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.8);
 }
 
-.hero-section h3 {
+.hero-section h3{
   font-size: 32px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
+
+.hero-section p{
+  max-width: 800px;
+  margin: 0 auto;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
 
 /* --Music-section--*/
 
@@ -124,6 +174,7 @@ nav ul li:hover {
   align-items: center;
   gap: 30px;
   color: white;
+
 }
 
 
@@ -136,11 +187,14 @@ nav ul li:hover {
 .primary-btn {
   background: var(--red600);
   color: white;
+  border-radius: 8px;
 }
 
 .secondary-btn {
   background: var(--purple300);
   color: white;
+  border-radius: 8px;
+  
 }
 
 .about-music {
@@ -152,12 +206,46 @@ nav ul li:hover {
   margin-bottom: 50px;
 }
 
-.video-section {
-  background-image: url(images/video.png);
+
+
+
+.video-section{
+  position: relative;
   min-height: 800px;
+  overflow: hidden;
   display: grid;
   place-items: center;
   text-align: center;
+}
+
+.video-section::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url(images/video.jpg);
+  background-size: cover;
+  background-position: center;
+
+  filter: blur(4px);
+  transform: scale(1.1);
+
+  z-index: 0;
+}
+
+.video-section::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  z-index: 1;
+}
+
+.video-section .container{
+  position: relative;
+  z-index: 23; 
   color: white;
 }
 
@@ -174,4 +262,130 @@ nav ul li:hover {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+
+.gift-section {
+  display: flex;
+  justify-content: center;
+  margin: 100px 0;
+  gap: 50px;
+}
+
+.gift-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.top-footer {
+  background-color: var(--purple600);
+  padding: 20px;
+}
+
+.top-footer .container {
+  display: flex;
+  color: white;
+  justify-content: space-around;
+}
+
+.top-footer h4 {
+  padding-bottom: 10px;
+  border-bottom: 2px solid white;
+  margin-bottom: 10px;
+}
+
+.bottom-footer {
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  color: black;
+
+}
+
+.top-footer h4 {
+  cursor: pointer;
+}
+
+
+.gift-card img,
+.mac-image img,
+.iphone-ipad-image img{
+  transition:0.3s ease;
+}
+
+.gift-card img:hover,
+.mac-image img:hover,
+.iphone-ipad-image img:hover{
+  transform:scale(1.03);
+}
+
+@media (max-width: 768px) {
+   nav {
+    flex-direction: column;
+    gap: 15px;
+   }
+
+   nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+   }
+
+   .hero-section{
+    padding:20px;
+  }
+
+  .hero-section h1{
+    font-size:60px;
+  }
+
+  .hero-section h3{
+    font-size:24px;
+  }
+
+  .hero-section p{
+    font-size:16px;
+  }
+
+   .iphone-ipad-image img,
+  .mac-image img,
+  .gift-card img{ 
+    width: 100%;
+    height: auto;
+  }
+
+  .iphone-ipad-image {
+    margin-top: -120px;
+    top: 120px;
+  }
+
+  .about-music {
+    padding-top: 180px;
+    padding-left: 20px; 
+    padding-right: 20px;
+  }
+
+  .gift-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .top-footer .container {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+
+  }
+
+  .top-footer h4{
+    width: 60%;
+    margin: 0 auto 10px;
+  }
+
+  .video-section {
+    padding: 20px;
+  }
 }
